@@ -137,4 +137,13 @@
         android:layout_marginVertical="10dp"
         android:checked="true"/>
 
+    <Button
+        android:id="@+id/filledButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/place_order"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="30dp"
+        />
+
 </LinearLayout>
