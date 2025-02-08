@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         binding.buttonPlaceOrder.setOnClickListener {
 
             // Get the selected pizza type
-            var type: String = ""
+            var type = ""
             when(binding.radioGroupPizzaType.checkedRadioButtonId) {
                 binding.radioButtonVegetarian.id -> {
                     type = "Vegetarian"
@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             // Get the selected delivery mode
-            var deliveryMode: String = ""
+            var deliveryMode = ""
             when(binding.radioGroupDeliveryMode.checkedRadioButtonId) {
                 binding.radioButtonPickup.id -> {
                     deliveryMode = "Pick-up"
