@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    tools:context=".MainActivity"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,150 +13,152 @@
         android:orientation="vertical"
         android:paddingHorizontal="10dp">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/topAppBar"
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="?attr/actionBarSize"
+                app:title="@string/app_name"
+                app:titleCentered="true" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <TextView
+            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="?attr/actionBarSize"
-            app:title="@string/app_name"
-            app:titleCentered="true" />
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:paddingVertical="20dp"
+            android:text="@string/welcome" />
 
-    </com.google.android.material.appbar.AppBarLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pizza_type" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingVertical="20dp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="@string/welcome"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/pizza_type"/>
-    <RadioGroup
-        android:checkedButton="@+id/RadioGroupPizzaType"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp">
-        <RadioButton
-            android:id="@+id/RadioButtonVegetarian"
+        <RadioGroup
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:checkedButton="@+id/RadioGroupPizzaType">
+
+            <RadioButton
+                android:id="@+id/RadioButtonVegetarian"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:checked="true"
+                android:enabled="true"
+                android:text="@string/vegetarian" />
+
+            <RadioButton
+                android:id="@+id/RadioButtonMeat"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:enabled="true"
+                android:text="@string/meat" />
+        </RadioGroup>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp">
+
+            <AutoCompleteTextView
+                android:id="@+id/MenuPizzaSize"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/size"
+                android:inputType="none"
+                app:simpleItems="@array/pizza_size" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/EditTextPizzaQuantity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/quantity"
+                android:inputType="numberSigned" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/EditTextPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/phone_number"
+                android:inputType="phone" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/delivery_mode" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checkedButton="@+id/RadioGroupDeliveryMode">
+
+            <RadioButton
+                android:id="@+id/RadioButtonPickup"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:checked="true"
+                android:enabled="true"
+                android:text="@string/pick_up" />
+
+            <RadioButton
+                android:id="@+id/RadioButtonDelivery"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:enabled="true"
+                android:text="@string/delivery" />
+        </RadioGroup>
+
+        <CheckBox
+            android:id="@+id/CheckBoxNotify"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
             android:checked="true"
-            android:enabled="true"
-            android:text="@string/vegetarian"/>
-        <RadioButton
-            android:id="@+id/RadioButtonMeat"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:enabled="true"
-            android:text="@string/meat"/>
-    </RadioGroup>
+            android:text="@string/notify" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="10dp"
-        >
-        <AutoCompleteTextView
-            android:id="@+id/MenuPizzaSize"
+        <Button
+            android:id="@+id/filledButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="none"
-            android:hint="@string/size"
-            app:simpleItems="@array/pizza_size"
-            />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="10dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/EditTextPizzaQuantity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/quantity"
-            android:inputType="numberSigned"
-            />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="10dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/EditTextPhoneNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/phone_number"
-            android:inputType="phone"
-            />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/delivery_mode"
-        android:layout_marginTop="10dp"/>
-    <RadioGroup
-        android:checkedButton="@+id/RadioGroupDeliveryMode"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <RadioButton
-            android:id="@+id/RadioButtonPickup"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:checked="true"
-            android:enabled="true"
-            android:text="@string/pick_up"/>
-        <RadioButton
-            android:id="@+id/RadioButtonDelivery"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:enabled="true"
-            android:text="@string/delivery"/>
-    </RadioGroup>
-
-    <CheckBox
-        android:id="@+id/CheckBoxNotify"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/notify"
-        android:layout_marginVertical="10dp"
-        android:checked="true"/>
-
-    <Button
-        android:id="@+id/filledButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/place_order"
-        android:layout_gravity="center"
-        android:layout_marginHorizontal="30dp"
-        />
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="30dp"
+            android:text="@string/place_order" />
 
         <TextView
             android:id="@+id/textViewOrderInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="50dp"
+            android:gravity="center"
             android:text="@string/order_info" />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
