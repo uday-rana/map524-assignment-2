@@ -129,7 +129,7 @@
                 android:text="@string/pick_up" />
 
             <RadioButton
-                android:id="@+id/RadioButtonDelivery"
+                android:id="@+id/radioButtonDelivery"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:enabled="true"
