@@ -4,5 +4,6 @@
     <string name="meat">Meat</string>
     <string name="pizza_type">Pizza Type</string>
     <string name="welcome">Welcome to Uday\'s Pizzeria! Create your order below.</string>
-    <string name="pizza_size">Pizza Size</string>
+    <string name="size">Size</string>
+    <string name="quantity">Quantity</string>
 </resources>
