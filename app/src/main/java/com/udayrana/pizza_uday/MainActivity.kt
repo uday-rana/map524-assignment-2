@@ -2,7 +2,6 @@ package com.udayrana.pizza_uday
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.snackbar.Snackbar
 import com.udayrana.pizza_uday.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -32,7 +31,7 @@ class MainActivity : AppCompatActivity() {
                     deliveryMode = "Pick-up"
                 }
                 binding.radioButtonDelivery.id -> {
-                    deliveryMode = "Meat"
+                    deliveryMode = "Delivery"
                 }
             }
 
@@ -43,71 +42,104 @@ class MainActivity : AppCompatActivity() {
             val notify = binding.checkBoxNotify.isChecked
 
             // Validate all the necessary fields
+            var error = false
+
             // Validate size
             if (size.isEmpty()) {
-                Snackbar.make(
-                    binding.root,
-                    "Error: Select size",
-                    Snackbar.LENGTH_SHORT
-                ).show()
-                return@setOnClickListener
+                binding.menuPizzaSizeLayout.error = "Select size"
+                error = true
             }
 
             // Validate quantity
             if (quantity == null) {
-                Snackbar.make(
-                    binding.root,
-                    "Error: Enter quantity",
-                    Snackbar.LENGTH_SHORT
-                ).show()
-                return@setOnClickListener
+                binding.editTextPizzaQuantityLayout.error = "Enter quantity"
+                error = true
             }
 
-            if (quantity <= 0 || quantity >= 11) {
-                Snackbar.make(
-                    binding.root,
-                    "Error: Quantity must be between 1 and 10",
-                    Snackbar.LENGTH_SHORT
-                ).show()
-                return@setOnClickListener
+            if (quantity != null && (quantity <= 0 || quantity >= 11)) {
+                binding.editTextPizzaQuantityLayout.error = "Quantity must be between 1 and 10"
+                error = true
             }
 
             // Validate phone number
             if (phone.isEmpty()) {
-                Snackbar.make(
-                    binding.root,
-                    "Error: Enter phone number",
-                    Snackbar.LENGTH_SHORT
-                ).show()
-                return@setOnClickListener
+                binding.editTextPhoneNumberLayout.error = "Enter phone number"
+                error = true
             }
 
             if (!Regex("^(\\+\\d{1,2}\\s?)?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}\$").matches(phone)) {
-                Snackbar.make(
-                    binding.root,
-                    "Error: Invalid phone number $phone",
-                    Snackbar.LENGTH_SHORT
-                ).show()
+                binding.editTextPhoneNumberLayout.error = "Invalid phone number"
+                error = true
+            }
+
+            if (error) {
                 return@setOnClickListener
             }
 
-            // Calculate the order details
+            // Get size price and name from selection
+            var sizeName: String = ""
+            var sizePrice: Double = 0.00
+            when (size) {
+                "Small - \$12.99" -> {
+                    sizeName = "Small"
+                    sizePrice = 12.99
+                }
+                "Medium - \$16.99" -> {
+                    sizeName = "Medium"
+                    sizePrice = 16.99
+                }
+                "Large - \$20.99" -> {
+                    sizeName = "Large"
+                    sizePrice = 20.99
+                }
+                "Party Size - \$26.99" -> {
+                    sizeName = "Party Size"
+                    sizePrice = 26.99
+                }
+            }
+
             /**
+             * Calculate the order details
              * Subtotal = (quantity) * (cost of pizza of selected size)
              * Discount: Give 10% discount if the subtotal is more than $80.
              * Tax: calculate tax on (Subtotal – Discount). Assume tax is 13%
              * Total Cost = (Subtotal – Discount) + Tax + Delivery Fee (if applicable)
              * */
+            val subtotal = (quantity ?: 0) * sizePrice
+
+            var discount = 0.0
+            if (subtotal > 80) {
+                discount = subtotal * 90/100
+            }
+
+            val tax = subtotal * 13/100
+
+            var total = subtotal + discount + tax
+
+            var deliveryFee = 0.0
+            if (deliveryMode.equals("Delivery")) {
+                deliveryFee = 3.99
+            }
+            total += deliveryFee
 
             // Display the order details in a text view
-            binding.textViewOrderInfo.text = """
-                ${type}
-                ${size}
-                ${quantity}
-                ${phone}
-                ${deliveryMode}
-                ${notify}
-            """.trimIndent()
+            var orderDetails = """
+                    Subtotal: $${total}
+                    Discount: $${discount}
+                    Tax: $${tax}
+                    Delivery Fee: $${deliveryFee}
+                    Total: ${total}
+                    
+                    Type: ${type}
+                    Size: ${sizeName}
+                    Quantity: ${quantity}
+                    Phone Number: ${phone}
+                    Delivery Method: ${deliveryMode}
+                    Notify When Ready: ${notify.toString().replaceFirstChar { if (it.isLowerCase()) it.titlecase() else it.toString() }}
+                    """.trimIndent()
+
+
+            binding.textViewOrderInfo.text = orderDetails
         }
     }
 }
