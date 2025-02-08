@@ -18,7 +18,6 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/topAppBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="?attr/actionBarSize"
@@ -28,7 +27,6 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <TextView
-            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -42,13 +40,14 @@
             android:text="@string/pizza_type" />
 
         <RadioGroup
+            android:id="@+id/radioGroupPizzaType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:checkedButton="@+id/RadioGroupPizzaType">
+            android:checkedButton="@+id/radioButtonVegetarian">
 
             <RadioButton
-                android:id="@+id/RadioButtonVegetarian"
+                android:id="@+id/radioButtonVegetarian"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:checked="true"
@@ -56,7 +55,7 @@
                 android:text="@string/vegetarian" />
 
             <RadioButton
-                android:id="@+id/RadioButtonMeat"
+                android:id="@+id/radioButtonMeat"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:enabled="true"
@@ -70,7 +69,7 @@
             android:layout_marginVertical="10dp">
 
             <AutoCompleteTextView
-                android:id="@+id/MenuPizzaSize"
+                android:id="@+id/menuPizzaSize"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/size"
@@ -85,7 +84,7 @@
             android:layout_marginVertical="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/EditTextPizzaQuantity"
+                android:id="@+id/editTextPizzaQuantity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/quantity"
@@ -100,7 +99,7 @@
             android:layout_marginVertical="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/EditTextPhoneNumber"
+                android:id="@+id/editTextPhoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/phone_number"
@@ -116,12 +115,13 @@
             android:text="@string/delivery_mode" />
 
         <RadioGroup
+            android:id="@+id/radioGroupDeliveryMode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:checkedButton="@+id/RadioGroupDeliveryMode">
+            android:checkedButton="@+id/radioButtonPickup">
 
             <RadioButton
-                android:id="@+id/RadioButtonPickup"
+                android:id="@+id/radioButtonPickup"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:checked="true"
@@ -137,7 +137,7 @@
         </RadioGroup>
 
         <CheckBox
-            android:id="@+id/CheckBoxNotify"
+            android:id="@+id/checkBoxNotify"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp"
@@ -145,7 +145,7 @@
             android:text="@string/notify" />
 
         <Button
-            android:id="@+id/filledButton"
+            android:id="@+id/buttonPlaceOrder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
