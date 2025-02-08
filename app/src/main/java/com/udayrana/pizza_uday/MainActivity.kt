@@ -15,10 +15,11 @@ class MainActivity : AppCompatActivity() {
 
             // Get the selected pizza type
             var type = ""
-            when(binding.radioGroupPizzaType.checkedRadioButtonId) {
+            when (binding.radioGroupPizzaType.checkedRadioButtonId) {
                 binding.radioButtonVegetarian.id -> {
                     type = "Vegetarian"
                 }
+
                 binding.radioButtonMeat.id -> {
                     type = "Meat"
                 }
@@ -26,10 +27,11 @@ class MainActivity : AppCompatActivity() {
 
             // Get the selected delivery mode
             var deliveryMode = ""
-            when(binding.radioGroupDeliveryMode.checkedRadioButtonId) {
+            when (binding.radioGroupDeliveryMode.checkedRadioButtonId) {
                 binding.radioButtonPickup.id -> {
                     deliveryMode = "Pick-up"
                 }
+
                 binding.radioButtonDelivery.id -> {
                     deliveryMode = "Delivery"
                 }
@@ -67,7 +69,10 @@ class MainActivity : AppCompatActivity() {
                 error = true
             }
 
-            if (!Regex("^(\\+\\d{1,2}\\s?)?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}\$").matches(phone)) {
+            if (!Regex("^(\\+\\d{1,2}\\s?)?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}\$").matches(
+                    phone
+                )
+            ) {
                 binding.editTextPhoneNumberLayout.error = "Invalid phone number"
                 error = true
             }
@@ -77,21 +82,24 @@ class MainActivity : AppCompatActivity() {
             }
 
             // Get size price and name from selection
-            var sizeName: String = ""
-            var sizePrice: Double = 0.00
+            var sizeName = ""
+            var sizePrice = 0.00
             when (size) {
                 "Small - \$12.99" -> {
                     sizeName = "Small"
                     sizePrice = 12.99
                 }
+
                 "Medium - \$16.99" -> {
                     sizeName = "Medium"
                     sizePrice = 16.99
                 }
+
                 "Large - \$20.99" -> {
                     sizeName = "Large"
                     sizePrice = 20.99
                 }
+
                 "Party Size - \$26.99" -> {
                     sizeName = "Party Size"
                     sizePrice = 26.99
@@ -109,10 +117,10 @@ class MainActivity : AppCompatActivity() {
 
             var discount = 0.0
             if (subtotal > 80) {
-                discount = subtotal * 90/100
+                discount = subtotal * 90 / 100
             }
 
-            val tax = subtotal * 13/100
+            val tax = subtotal * 13 / 100
 
             var total = subtotal + discount + tax
 
@@ -123,7 +131,7 @@ class MainActivity : AppCompatActivity() {
             total += deliveryFee
 
             // Display the order details in a text view
-            var orderDetails = """
+            binding.textViewOrderInfo.text = """
                     Subtotal: $${total}
                     Discount: $${discount}
                     Tax: $${tax}
@@ -135,11 +143,11 @@ class MainActivity : AppCompatActivity() {
                     Quantity: ${quantity}
                     Phone Number: ${phone}
                     Delivery Method: ${deliveryMode}
-                    Notify When Ready: ${notify.toString().replaceFirstChar { if (it.isLowerCase()) it.titlecase() else it.toString() }}
+                    Notify When Ready: ${
+                notify.toString()
+                    .replaceFirstChar { if (it.isLowerCase()) it.titlecase() else it.toString() }
+            }
                     """.trimIndent()
-
-
-            binding.textViewOrderInfo.text = orderDetails
         }
     }
 }

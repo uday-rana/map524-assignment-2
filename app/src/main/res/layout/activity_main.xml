@@ -84,8 +84,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp"
-            app:helperTextEnabled="true"
-            app:helperText="@string/quantity_helper_text">
+            app:helperText="@string/quantity_helper_text"
+            app:helperTextEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextPizzaQuantity"
