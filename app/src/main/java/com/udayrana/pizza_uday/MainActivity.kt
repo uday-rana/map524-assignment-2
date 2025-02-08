@@ -12,6 +12,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.buttonPlaceOrder.setOnClickListener {
+            binding.menuPizzaSizeLayout.error = ""
+            binding.editTextPizzaQuantityLayout.error = ""
+            binding.editTextPhoneNumberLayout.error = ""
 
             // Get the selected pizza type
             var type = ""
@@ -56,9 +59,7 @@ class MainActivity : AppCompatActivity() {
             if (quantity == null) {
                 binding.editTextPizzaQuantityLayout.error = "Enter quantity"
                 error = true
-            }
-
-            if (quantity != null && (quantity <= 0 || quantity >= 11)) {
+            } else if (quantity <= 0 || quantity >= 11) {
                 binding.editTextPizzaQuantityLayout.error = "Quantity must be between 1 and 10"
                 error = true
             }
@@ -67,9 +68,7 @@ class MainActivity : AppCompatActivity() {
             if (phone.isEmpty()) {
                 binding.editTextPhoneNumberLayout.error = "Enter phone number"
                 error = true
-            }
-
-            if (!Regex("^(\\+\\d{1,2}\\s?)?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}\$").matches(
+            } else if (!Regex("^(\\+\\d{1,2}\\s?)?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}\$").matches(
                     phone
                 )
             ) {
@@ -117,12 +116,14 @@ class MainActivity : AppCompatActivity() {
 
             var discount = 0.0
             if (subtotal > 80) {
-                discount = subtotal * 90 / 100
+                discount = subtotal * 10 / 100
             }
 
-            val tax = subtotal * 13 / 100
+            val subtotalWithDiscount = subtotal - discount
 
-            var total = subtotal + discount + tax
+            val tax = subtotalWithDiscount * 13 / 100
+
+            var total = subtotalWithDiscount + tax
 
             var deliveryFee = 0.0
             if (deliveryMode.equals("Delivery")) {
@@ -132,11 +133,11 @@ class MainActivity : AppCompatActivity() {
 
             // Display the order details in a text view
             binding.textViewOrderInfo.text = """
-                    Subtotal: $${total}
+                    Subtotal: $${subtotal}
                     Discount: $${discount}
                     Tax: $${tax}
                     Delivery Fee: $${deliveryFee}
-                    Total: ${total}
+                    Total: $${total}
                     
                     Type: ${type}
                     Size: ${sizeName}
