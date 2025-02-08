@@ -12,4 +12,5 @@
     <string name="delivery_mode">Delivery mode</string>
     <string name="notify">Notify me when my order is ready</string>
     <string name="place_order">Place order</string>
+    <string name="order_info">Your order information will be displayed here</string>
 </resources>
