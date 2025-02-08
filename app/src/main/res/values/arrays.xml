@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pizza_size">
+        <item>Small - $12.99</item>
+        <item>Medium - $16.99</item>
+        <item>Large - $20.99</item>
+        <item>Party Size - $26.99</item>
+    </string-array>
+</resources>
