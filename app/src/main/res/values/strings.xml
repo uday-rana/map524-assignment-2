@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Uday\'s Pizzeria</string>
+    <string name="vegetarian">Vegetarian</string>
+    <string name="meat">Meat</string>
+    <string name="pizza_type">Pizza Type</string>
+    <string name="welcome">Welcome to Uday\'s Pizzeria! Create your order below.</string>
 </resources>
